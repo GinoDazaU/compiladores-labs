@@ -1,0 +1,24 @@
+Scanner
+
+TOKEN(ID, "x")
+TOKEN(ASSIGN, "=")
+TOKEN(NUM, "10")
+TOKEN(PLUS, "+")
+TOKEN(NUM, "10")
+TOKEN(SEMICOLON, ";")
+TOKEN(ID, "y")
+TOKEN(ASSIGN, "=")
+TOKEN(ID, "x")
+TOKEN(MUL, "*")
+TOKEN(NUM, "15")
+TOKEN(SEMICOLON, ";")
+TOKEN(PRINT, "print")
+TOKEN(LPAREN, "(")
+TOKEN(ID, "x")
+TOKEN(PLUS, "+")
+TOKEN(ID, "y")
+TOKEN(RPAREN, ")")
+TOKEN(END)
+
+Scanner exitoso
+

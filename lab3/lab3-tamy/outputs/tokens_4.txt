@@ -1,0 +1,19 @@
+Scanner
+
+TOKEN(ID, "m")
+TOKEN(ASSIGN, "=")
+TOKEN(MIN, "min")
+TOKEN(LPAREN, "(")
+TOKEN(NUM, "7")
+TOKEN(COMMA, ",")
+TOKEN(NUM, "3")
+TOKEN(RPAREN, ")")
+TOKEN(SEMICOL, ";")
+TOKEN(PRINT, "print")
+TOKEN(LPAREN, "(")
+TOKEN(ID, "m")
+TOKEN(RPAREN, ")")
+TOKEN(END)
+
+Scanner exitoso
+

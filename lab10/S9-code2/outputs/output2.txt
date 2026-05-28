@@ -1,0 +1,24 @@
+=== STDOUT ===
+Parseo exitoso
+Codigo:
+var int x,
+x = 10
+while x do
+  print (x)
+  x = x - 1
+endwhile
+
+Interprete:
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+
+=== STDERR ===

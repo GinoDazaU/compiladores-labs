@@ -1,0 +1,17 @@
+=== STDOUT ===
+Parseo exitoso
+Codigo:
+x = 5
+if x then
+  print (x)
+else
+  print (x + 1)
+endif
+print (x + 10)
+
+Interprete:
+5
+15
+
+
+=== STDERR ===

@@ -1,0 +1,14 @@
+este lab fue sobre LL1 y LR(0)
+fue escrito
+justo falte a la clase de lr0 asi que no entendi nada
+un compañero carreo esa parte
+
+Pregunta 1 (LL1):
+1. Quitar referencia y recursividad de una gramatica
+2. Hallar los firts y follows
+3. Formar la tabla de reglas
+4. Parsear un cadena
+
+Pregunta 2 (LR0):
+
+Pregunta 3 (LR0):

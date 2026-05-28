@@ -1,0 +1,1 @@
+x, y, z = (2,3,4); a = x ** y; b = sqrt(z*z + a); print('suma', a+b)

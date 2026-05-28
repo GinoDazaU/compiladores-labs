@@ -1,0 +1,10 @@
+=== STDOUT ===
+Parseo exitoso
+Codigo:
+x = 10 + 10
+y = x * 15
+print ( x + y ) 
+
+Interprete:320
+
+=== STDERR ===

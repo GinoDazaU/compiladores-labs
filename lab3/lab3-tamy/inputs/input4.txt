@@ -1,0 +1,1 @@
+m = min(7,3); print(m)
