@@ -1,5 +1,0 @@
-TOKEN(NUM, "35")
-TOKEN(PLUS, "+")
-TOKEN(NUM, "123")
-TOKEN(END)
-Scanner completado con exito

@@ -1,0 +1,33 @@
+=== STDOUT ===
+Parseo exitoso
+Codigo x86
+.data
+print_fmt:.string "%ld\n" 
+.text
+.globl main
+main:
+pushq %rbp
+movq %rsp, %rbp
+subq $16, %rsp
+movq $1, %rax
+movq %rax ,-8(%rbp)
+movq -8(%rbp) , %rax
+cmpq $0 , %rax
+je else
+movq $50, %rax
+movq %rax , %rsi
+leaq print_fmt(%rip), %rdi
+call printf@PLT
+jmp endif
+else:
+movq $10, %rax
+movq %rax , %rsi
+leaq print_fmt(%rip), %rdi
+call printf@PLT
+endif:
+movq $0, %rax
+leave
+ret
+.section .note.GNU-stack,"",@progbits
+
+=== STDERR ===

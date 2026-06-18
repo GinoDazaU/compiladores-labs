@@ -1,0 +1,6 @@
+x = 1;
+if x then 
+    print(50)
+else 
+    print(10)
+endif

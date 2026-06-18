@@ -1,0 +1,60 @@
+// =============================================================================
+// Tablas/Atributos auxiliares asumidos en GenCodeVisitor para Structs:
+// =============================================================================
+// - std::unordered_map<std::string, int> memoria;                                // Mapea variables locales a su offset en la pila (ya existe en visitor.h)
+// - std::unordered_map<std::string, int> structSizes;                            // Mapea el tipo de struct a su tamaño total en bytes (ej: structSizes["Point"] = 16)
+// - std::unordered_map<std::string, std::unordered_map<std::string, int>> structFields; // Mapea el tipo de struct y nombre del campo a su offset relativo en bytes (ej: structFields["Point"]["y"] = 8)
+// - std::unordered_map<std::string, std::string> variableStructType;             // Mapea el nombre de la variable a su tipo de struct (ej: variableStructType["p"] = "Point")
+// - std::ostream &out;                                                           // Stream de salida para escribir las instrucciones de ensamblador
+// =============================================================================
+
+// 1. Creación de la estructura en el Heap (usando malloc)
+// Retorna en %rax el puntero a la estructura recién instanciada en el Heap.
+int GenCodeVisitor::visit(StructNewExp* exp) {
+    int size = structSizes[exp->structType];
+    
+    // Asigna el tamaño de la estructura en bytes al registro %rdi y llama a malloc
+    out << "  movq $" << size << ", %rdi\n";
+    out << "  call malloc@PLT\n";
+    
+    // El puntero retornado queda en %rax
+    return 0;
+}
+
+// 2. Expresión de acceso de lectura a un campo de la estructura (ej: var.field)
+// Carga el valor del campo en %rax desde la dirección base de la estructura en el Heap.
+int GenCodeVisitor::visit(StructAccessExp* exp) {
+    // 1. Cargar el puntero base de la estructura en %rcx
+    out << "  movq " << memoria[exp->name] << "(%rbp), %rcx\n";
+    
+    // 2. Obtener el offset del campo según el tipo de la estructura
+    std::string type = variableStructType[exp->name];
+    int fieldOffset = structFields[type][exp->field];
+    
+    // 3. Cargar el valor del campo en %rax usando el offset relativo
+    out << "  movq " << fieldOffset << "(%rcx), %rax\n";
+    
+    return 0;
+}
+
+// 3. Sentencia de asignación a un campo de la estructura (ej: var.field = valueExpr)
+// Sigue la convención: %rax = base pointer / valor, %rdx = puntero estructura, %rcx = valor
+int GenCodeVisitor::visit(StructAssignStm* stm) {
+    // 1. Evalúa la expresión a asignar valueExpr (el resultado queda en %rax)
+    stm->valueExpr->accept(this);
+    
+    // 2. Pasa el valor a %rcx
+    out << "  movq %rax, %rcx\n";
+    
+    // 3. Cargar el puntero base de la estructura en %rdx
+    out << "  movq " << memoria[stm->name] << "(%rbp), %rdx\n";
+    
+    // 4. Obtener el offset del campo
+    std::string type = variableStructType[stm->name];
+    int fieldOffset = structFields[type][stm->field];
+    
+    // 5. Escribe el valor (%rcx) en la dirección del campo de la estructura: struct_ptr[fieldOffset] = valor
+    out << "  movq %rcx, " << fieldOffset << "(%rdx)\n";
+    
+    return 0;
+}

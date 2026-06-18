@@ -1,7 +1,0 @@
-Iniciando Scanner para archivo: inputs\input11.txt
-
-TOKEN(ERR, "l")
-Caracter invalido
-
-Scanner no exitoso
-

@@ -1,1 +1,0 @@
-log(x1) + sqrt(x5) + pow(2,5)

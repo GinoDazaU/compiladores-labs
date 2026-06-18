@@ -1,9 +1,0 @@
-Iniciando Scanner para archivo: inputs\input2.txt
-
-TOKEN(NUM, "4")
-TOKEN(MUL, "*")
-TOKEN(NUM, "5")
-TOKEN(END)
-
-Scanner exitoso
-
